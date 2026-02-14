@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.vscode/
+
+results/
+saved_models/
+
+*.joblib
+*.keras
+
+# اگر دیتاست حجیمه:
+data/
