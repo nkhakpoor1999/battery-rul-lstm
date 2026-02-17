@@ -1,0 +1,28 @@
+{
+  "accuracy": 0.9709270433351618,
+  "macro_f1": 0.8027154153963673,
+  "weighted_f1": 0.9743479718364108,
+  "balanced_accuracy": 0.9584790960451978,
+  "log_loss": 0.06601117206735897,
+  "labels": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "target_names": [
+    "NASA",
+    "OXFORD",
+    "MIT",
+    "Lab-Li-LCO",
+    "Lab-Li-NMC",
+    "Lab-Li-EVE"
+  ],
+  "train_batteries": 21,
+  "val_batteries": 6,
+  "train_cycles": 8243,
+  "val_cycles": 1823,
+  "seed": 42
+}

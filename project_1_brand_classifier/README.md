@@ -61,3 +61,25 @@ project_1_brand_classifier/
 ├── predict.py
 └── utils.py
 ```
+## 📊 Brand Classification Results
+
+### 🔹 Validation Metrics
+See full metrics: `outputs/metrics.json`
+
+---
+
+### 🔹 Normalized Confusion Matrix
+
+![Confusion Matrix](outputs/cm_norm_heatmap.png)
+
+---
+
+### 🔹 New Battery Predictions
+
+**EVE_8_B**
+
+See details: `outputs/pred_EVE_8_B.txt`
+
+**OXFORD_8**
+
+See details: `outputs/pred_OXFORD_8.txt`

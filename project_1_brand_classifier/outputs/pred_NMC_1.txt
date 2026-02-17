@@ -1,0 +1,11 @@
+Battery class probabilities (avg over cycles):
+  NASA: 0.0189
+  OXFORD: 0.1303
+  MIT: 0.0122
+  Lab-Li-LCO: 0.0001
+  Lab-Li-NMC: 0.8099
+  Lab-Li-EVE: 0.0287
+
+Final class: Lab-Li-NMC (confidence=0.8099)
+
+Per-cycle summary: Counter({'Lab-Li-NMC': 130, 'OXFORD': 17, 'Lab-Li-EVE': 3, 'MIT': 2})
