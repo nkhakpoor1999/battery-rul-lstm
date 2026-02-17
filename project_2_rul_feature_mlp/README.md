@@ -1,28 +1,121 @@
-# Feature-Based Battery RUL Prediction (MLP)
+# 🔋 Project 2 — Feature-Based RUL Prediction (MLP)
 
-This project predicts **Remaining Useful Life (RUL)** of lithium-ion batteries using a **Multi-Layer Perceptron (MLP)** regressor. The model uses features extracted from each discharge cycle to estimate how close the battery is to its **End-of-Life (EOL)**.
+A machine learning pipeline for Remaining Useful Life (RUL) prediction using engineered cycle-level features and a fully connected neural network.
 
----
-
-## Method Overview
-
-- **State of Health (SoH)** is computed as `SoH = Q / Qmax`.
-- **End-of-Life (EOL)** is defined as the cycle where `SoH ≤ eol_threshold`.
-- The model predicts a **normalized RUL**: `RUL_ratio = (EOL - cycle) / EOL`.
-
-### Feature Engineering
-Features include voltage statistics, dQ/dV, dV/dSOC, and dT/dV (if available). These are used to train the MLP model.
-
-### Model
-An MLP with ReLU activation and a linear output layer is used to predict the normalized RUL.
-
-### Validation
-**GroupKFold** is used for cross-validation, ensuring no data leakage from the same battery between train and validation.
+This module focuses on interpretable feature-based degradation modeling before moving to sequence-based deep learning approaches.
 
 ---
 
-## How to Run
+## 🎯 Objective
 
-- Train the model:  
-  ```bash
-  python train.py
+Given battery cycle data (`.npz` files), the pipeline:
+
+- Computes engineered degradation features per cycle
+- Defines End-of-Life (EOL) based on SOH threshold
+- Converts cycle index to normalized RUL target
+- Performs battery-level cross-validation
+- Selects optimal feature groups via ablation + search
+- Trains a final regression model
+
+---
+
+## 🧠 Model
+
+- Multi-Layer Perceptron (64 → 32 → 16)
+- ReLU activation
+- L2 regularization
+- MSE loss (regression)
+- Median-best-epoch selection from GroupKFold CV
+
+---
+
+## 📊 Validation Strategy
+
+- GroupKFold split (group = battery ID)
+- Prevents cycle-level leakage
+- Feature group ablation + search
+- Median optimal epoch from CV used for final training
+
+---
+
+## 🔬 Feature Engineering
+
+Features are extracted per cycle using:
+
+- Voltage statistics
+- dV/dSOC
+- dQ/dV
+- dT/dV (if temperature available)
+- SOH-based degradation indicators
+
+Feature groups are evaluated through systematic ablation and subset search.
+
+---
+
+## 🚀 Training
+
+```bash
+python project_2_rul_feature_mlp/train.py
+```
+
+Dataset configuration is controlled via:
+
+```python
+DATASET_KEY = "NASA"
+```
+
+---
+
+## 📁 Outputs
+
+```
+artifacts_3/<DATASET>/
+├── model (Keras)
+├── scaler
+├── selected feature indices
+├── ablation results (CSV)
+├── search results (CSV)
+├── Excel summary
+└── training report.txt
+```
+
+---
+
+## 📈 Target Definition
+
+For cycle `c`:
+
+```
+RUL_ratio = (EOL - c) / EOL
+```
+
+This normalizes RUL between 0 and 1 for stable regression training.
+
+---
+
+## 🛠 Tech Stack
+
+Python · TensorFlow/Keras · NumPy · SciPy · Scikit-learn · Pandas
+
+---
+
+## 📂 Structure
+
+```
+project_2_rul_feature_mlp/
+├── train.py
+├── dataset.py
+├── model.py
+├── features.py
+├── preprocessing.py
+├── cv_search.py
+└── artifacts.py
+```
+
+---
+
+## 📌 Positioning in Pipeline
+
+Battery Data → Feature Engineering → Feature Selection → MLP Regression → RUL Prediction
+
+This module provides an interpretable baseline before sequence-based LSTM modeling (Project 3).
