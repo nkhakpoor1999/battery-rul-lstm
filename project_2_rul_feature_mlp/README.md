@@ -81,17 +81,21 @@ This normalizes RUL between 0 and 1 for stable regression training.
 
 ---
 
-## 📂 Structure
 
-```
-project_2_rul_feature_mlp/
-├── train.py
-├── dataset.py
-├── model.py
-├── features.py
-├── preprocessing.py
-├── cv_search.py
-└── artifacts.py
-```
+### 📊 Example Results
 
+#### Oxford Dataset
 
+![Oxford True vs Pred](examples/true_vs_pred_rul_ratio-OXFORD.png)  
+![Oxford Ablation](examples/ablation_r2_mean_bar-OXFORD.png)
+
+📄 Full Report: [report-OXFORD.txt](examples/report-OXFORD.txt)
+
+---
+
+#### Lab-Li-EVE Dataset
+
+![Lab True vs Pred](examples/true_vs_pred_rul_ratio-Lab-Li-EVE.png)  
+![Lab Ablation](examples/ablation_r2_mean_bar-Lab-Li-EVE.png)
+
+📄 Full Report: [report-Lab-Li-EVE.txt](examples/report-Lab-Li-EVE.txt)

@@ -51,16 +51,6 @@ Outputs:
 
 ---
 
-## 📂 Structure
-
-```text
-project_1_brand_classifier/
-├── dataset.py
-├── model.py
-├── train.py
-├── predict.py
-└── utils.py
-```
 ## 📊 Brand Classification Results
 
 ### 🔹 Validation Metrics

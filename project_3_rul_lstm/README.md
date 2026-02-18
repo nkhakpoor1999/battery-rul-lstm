@@ -113,19 +113,6 @@ All datasets used here were preprocessed into a standardized `.npz` format prior
 
 Preprocessing scripts are intentionally excluded to keep the repository focused on modeling and evaluation.
 
----
-
-## 📂 Structure
-
-```
-project_3_rul_lstm/
-├── train.py
-├── evaluate.py
-├── dataset.py
-├── model.py
-├── dataset_configs.py
-└── utils.py
-```
 
 ---
 
