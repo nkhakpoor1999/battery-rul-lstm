@@ -1,0 +1,43 @@
+RUL REPORT
+Generated at: 2026-02-17T16:06:18
+
+RUL training batteries:
+- EVE_5_A.npz
+- EVE_6_B.npz
+- EVE_7_A.npz
+
+EVE_5_A.npz: cycles=250, EOL=218
+EVE_6_B.npz: cycles=250, EOL=209
+EVE_7_A.npz: cycles=250, EOL=165
+
+RUL dataset:
+X shape: (595, 15)
+y shape: (595, 1)
+#unique batteries: 3
+
+=== Ablation summary (GroupKFold mean) ===
+         setting  R2_mean  MAE_mean  RMSE_mean       ΔR2      ΔMAE     ΔRMSE
+             ALL 0.755344  0.108783   0.132880  0.000000  0.000000  0.000000
+Without_V_at_SOC 0.830311  0.093862   0.117644  0.074967 -0.014921 -0.015236
+ Without_V_stats 0.878274  0.082018   0.100435  0.122930 -0.026765 -0.032444
+    Without_dQdV 0.213271  0.201773   0.253488 -0.542073  0.092990  0.120609
+    Without_dTdV 0.795732  0.103160   0.127776  0.040388 -0.005623 -0.005104
+  Without_dVdSOC 0.852219  0.084875   0.110754  0.096875 -0.023908 -0.022125
+
+=== Best subset by GroupKFold (min MAE, tie-break RMSE then R2) ===
+                 groups_to_keep  dim  R2_mean  MAE_mean  RMSE_mean   R2_std  MAE_std  RMSE_std
+           (dQdV, dVdSOC, dTdV)    9 0.942026  0.050009   0.067524 0.038144 0.013582  0.022072
+                   (dQdV, dTdV)    6 0.940738  0.052740   0.069898 0.019770 0.007931  0.012357
+                        (dQdV,)    3 0.938014  0.053874   0.071304 0.022595 0.009313  0.014094
+                 (dQdV, dVdSOC)    6 0.924316  0.056137   0.074309 0.071883 0.025269  0.035841
+(V_stats, dQdV, dTdV, V_at_SOC)   12 0.900095  0.069094   0.091186 0.027038 0.009887  0.012165
+               (dQdV, V_at_SOC)    6 0.874037  0.078636   0.099623 0.081670 0.023631  0.031820
+         (dQdV, dTdV, V_at_SOC)    9 0.874572  0.081446   0.101785 0.043723 0.015208  0.017260
+          (V_stats, dQdV, dTdV)    9 0.872428  0.083466   0.103524 0.014489 0.005252  0.005896
+      (V_stats, dQdV, V_at_SOC)    9 0.844875  0.090149   0.113637 0.038313 0.016066  0.014661
+ (dQdV, dVdSOC, dTdV, V_at_SOC)   12 0.820899  0.092003   0.117809 0.128011 0.034505  0.042329
+
+✅ CHOSEN GROUPS: ('dQdV', 'dVdSOC', 'dTdV')
+
+Median best epoch from GroupKFold (chosen subset): 100
+

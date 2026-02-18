@@ -1,0 +1,51 @@
+RUL REPORT
+Generated at: 2026-02-17T11:12:20
+
+RUL training batteries:
+- OXFORD_1.npz
+- OXFORD_2.npz
+- OXFORD_3.npz
+- OXFORD_4.npz
+- OXFORD_5.npz
+- OXFORD_6.npz
+- OXFORD_7.npz
+
+OXFORD_1.npz: cycles=78, EOL=53
+OXFORD_2.npz: cycles=73, EOL=45
+OXFORD_3.npz: cycles=76, EOL=57
+OXFORD_4.npz: cycles=47, EOL=44
+OXFORD_5.npz: cycles=46, EOL=45
+OXFORD_6.npz: cycles=46, EOL=45
+OXFORD_7.npz: cycles=77, EOL=75
+
+RUL dataset:
+X shape: (371, 15)
+y shape: (371, 1)
+#unique batteries: 7
+
+=== Ablation summary (GroupKFold mean) ===
+         setting  R2_mean  MAE_mean  RMSE_mean       ΔR2      ΔMAE    ΔRMSE
+             ALL 0.928273  0.057902   0.077412  0.000000  0.000000 0.000000
+Without_V_at_SOC 0.883103  0.070580   0.096717 -0.045170  0.012679 0.019305
+ Without_V_stats 0.561569  0.122903   0.161511 -0.366705  0.065001 0.084099
+    Without_dQdV 0.736645  0.101158   0.139426 -0.191628  0.043256 0.062014
+    Without_dTdV 0.857774  0.059267   0.099337 -0.070499  0.001365 0.021925
+  Without_dVdSOC 0.871099  0.054318   0.094335 -0.057174 -0.003584 0.016923
+
+=== Best subset by GroupKFold (min MAE, tie-break RMSE then R2) ===
+                         groups_to_keep  dim  R2_mean  MAE_mean  RMSE_mean   R2_std  MAE_std  RMSE_std
+                (V_stats, dQdV, dVdSOC)    9 0.949882  0.050618   0.064689 0.018224 0.010770  0.013623
+                        (V_stats, dQdV)    6 0.943197  0.051511   0.067738 0.031083 0.014278  0.020008
+              (V_stats, dQdV, V_at_SOC)    9 0.832655  0.053581   0.098059 0.266165 0.011698  0.078407
+                      (V_stats, dVdSOC)    6 0.939568  0.055689   0.071401 0.021966 0.010537  0.013003
+                    (V_stats, V_at_SOC)    6 0.918366  0.056297   0.076943 0.077873 0.020218  0.037880
+                         (dQdV, dVdSOC)    6 0.936352  0.057096   0.069742 0.052299 0.026014  0.027915
+              (V_stats, dTdV, V_at_SOC)    9 0.885519  0.059654   0.091124 0.120785 0.015791  0.045059
+(V_stats, dQdV, dVdSOC, dTdV, V_at_SOC)   15 0.756969  0.061400   0.119895 0.379476 0.010945  0.091748
+      (V_stats, dVdSOC, dTdV, V_at_SOC)   12 0.916262  0.063048   0.083670 0.033438 0.010686  0.017273
+                            (V_at_SOC,)    3 0.878817  0.063686   0.093610 0.123394 0.014605  0.046546
+
+✅ CHOSEN GROUPS: ('V_stats', 'dQdV', 'dVdSOC')
+
+Median best epoch from GroupKFold (chosen subset): 95
+
